@@ -1,12 +1,47 @@
-<ul>
-  <li *ngFor="let tempProduct of products">
-    <a routerLink="/products/{{ tempProduct.id }}">
-        <img [src]="tempProduct.imageUrl" [alt]="tempProduct.name">
-        <div class="content">
-          <div class="name">
-            {{ tempProduct.name }}
-          </div>
+<div class="small-container">
+  <div class="row">
+    <ul>
+      <li *ngFor="let tempProduct of products">
+        <div class="col-4">
+          <a routerLink="/products/{{ tempProduct.id }}">
+            <img [src]="tempProduct.imageUrl" [alt]="tempProduct.name" />
+            <div class="content">
+              <div class="name">
+                {{ tempProduct.name }}
+              </div>
+              <span class="favorite {{ tempProduct.favorite ? '' : 'not' }}">
+                ❤
+              </span>
+              <div class="stars">
+                <star-rating
+                  [value]="tempProduct.stars"
+                  [totalstars]="5"
+                  checkedcolor="red"
+                  uncheckedcolor="black"
+                  size="22px"
+                  [readonly]="true">
+                </star-rating>
+              </div>
+              <div class="product-item-footer">
+                <div class="origins">
+                  <span *ngFor="let origin of tempProduct.origins">
+                    {{ origin }}
+                  </span>
+                </div>
+                <div class="cook-time">
+                  <span>⏳</span>
+                 {{ tempProduct.cookTime }}
+                </div>
+                <div class="price">
+                  <span>
+                    {{ tempProduct.price | currency }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
-    </a>
-  </li>
-</ul>
+      </li>
+    </ul>
+  </div>
+</div>
