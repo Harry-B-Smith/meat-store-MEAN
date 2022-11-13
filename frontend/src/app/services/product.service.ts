@@ -13,4 +13,8 @@ export class ProductService {
     return sample_meat;
   }
 
+  getAllProductsBySearchTerm(searchTerm:string) {
+    return this.getAll().filter(products => products.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
+
 }
